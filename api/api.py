@@ -12,7 +12,7 @@ Define a rota e os argumentos nescessários para a API.
 def get():
     parser = reqparse.RequestParser()
     """
-        Os argumentos abaixo onde o required estiver como "False" não é obrigatório especifica-lo na url
+        Os argumentos abaixo onde o required estiver como "True" é obrigatório especifica-lo na url
         Exemplo de chamadas:
           1. http://127.0.0.1:5000/find?name=api&extensions=py,txt
           2. http://127.0.0.1:5000/find?name=api&extensions=py,txt&case_insensitive=true
