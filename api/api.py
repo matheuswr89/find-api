@@ -16,7 +16,7 @@ def get():
         Exemplo de chamadas:
           1. http://127.0.0.1:5000/find?name=api&extensions=py,txt
           2. http://127.0.0.1:5000/find?name=api&extensions=py,txt&case_insensitive=true
-          3. http://127.0.0.1:5000/find?name=api&modification_date=1637193600&dir=false
+          3. http://127.0.0.1:5000/find?name=api&modification_date=1637193600&dir=true
           4. http://127.0.0.1:5000/find?name=api&size=100250
         """
     parser.add_argument('name', required=True)
