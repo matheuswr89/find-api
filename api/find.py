@@ -7,6 +7,8 @@ from stat import S_ISDIR
 Checa quais argumentos foram passados e monta o comando para pesquisar.
 args -> argumentos fornecidos pelo usuário 
 """
+
+
 def check_arguments(args):
     name = args['name']
     search_dir = args['dir']
@@ -51,9 +53,9 @@ def check_arguments(args):
             string += ' "{0}.{1}"'.format(name, extensions)
 
     if args['modification_date'] != None:
-        string += ' -mtime {0}'.format(calculate_date(args['modification_date']))
+        string += ' -mtime {0}'.format(
+            calculate_date(args['modification_date']))
 
-    print(string)
     return command_line(string.replace('\n', ''))
 
 
@@ -61,6 +63,8 @@ def check_arguments(args):
 Executa o comando.
 command -> comando montado na função check_arguments 
 """
+
+
 def command_line(command):
     json = []
     stream = os.popen(command)
@@ -82,6 +86,8 @@ def command_line(command):
 Retorna a data de criação do arquivo ou diretório.
 path -> caminho absoluto do arquivo ou diretório 
 """
+
+
 def get_creation_date(path):
     if platform.system() == 'Windows':
         return os.path.getctime(path)
@@ -97,6 +103,8 @@ def get_creation_date(path):
 Retorna o tamanho do arquivo.
 path -> caminho absoluto do arquivo 
 """
+
+
 def get_size(path):
     size = os.path.getsize(path)
     if size <= 1000:
@@ -113,6 +121,8 @@ def get_size(path):
 Retorna a quantidade de arquivos de um diretório.
 path -> caminho absoluto do diretório 
 """
+
+
 def get_total_files(path):
     list = os.listdir(path)
     return len(list)
@@ -122,6 +132,8 @@ def get_total_files(path):
 Calcula a diferença de datas entre a hora atual do PC e a fornecida pelo usuário.
 data -> data fornecida pelo usuario no formato 2020-03-31
 """
+
+
 def calculate_date(data):
     d2 = datetime.now()
     d1 = datetime.fromtimestamp(int(data))
@@ -132,6 +144,8 @@ def calculate_date(data):
 Verifica se é um arquivo.
 path -> caminho absoluto do diretório 
 """
+
+
 def is_file(path):
     if(S_ISDIR(os.stat(path).st_mode)):
         return False

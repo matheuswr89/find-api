@@ -5,9 +5,17 @@ from find import check_arguments
 app = Flask(__name__)
 api = Api(app)
 
+
+@app.route('/')
+def init():
+    return {'response': 'Vá até /find?name=[insira um nome]'}
+
+
 """
 Define a rota e os argumentos nescessários para a API.
 """
+
+
 @app.route('/find')
 def get():
     parser = reqparse.RequestParser()
@@ -29,17 +37,18 @@ def get():
     args = parser.parse_args()
     if args["name"] == "":
         return {'error': "Forneça um nome de arquivo."}, 400
-    print(args["size"])
     output = check_arguments(args)
     if output != 404:
         return {'response': output}, 200
     else:
-        return {'response': 'O arquivo/pasta não pode ser encontrado.'}, 404
+        return {'error': 'O arquivo/pasta não pode ser encontrado.'}, 404
+
 
 """
 Expressão lambda que verifica se foi passado um valor booleano.
 """
-verific_arg = lambda v: v.lower() == 'true'
+def verific_arg(v): return v.lower() == 'true'
+
 
 if __name__ == '__main__':
     app.run(debug=True)
