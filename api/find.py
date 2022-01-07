@@ -74,7 +74,7 @@ def command_line(command):
                 'isFile': True if is_file(path) == True else False
             })
     if json == []:
-        json.append({'error': 'Arquivo ou diretório não encontrado.'})
+        return 404
     return json
 
 

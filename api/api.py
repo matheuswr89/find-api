@@ -31,7 +31,7 @@ def get():
         return {'error': "Forneça um nome de arquivo."}, 400
     print(args["size"])
     output = check_arguments(args)
-    if output:
+    if output != 404:
         return {'response': output}, 200
     else:
         return {'response': 'O arquivo/pasta não pode ser encontrado.'}, 404
