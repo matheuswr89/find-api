@@ -31,7 +31,10 @@ def get():
         return {'error': "Forneça um nome de arquivo."}, 400
     print(args["size"])
     output = check_arguments(args)
-    return {'response': output}, 200
+    if output:
+        return {'response': output}, 200
+    else:
+        return {'response': 'O arquivo/pasta não pode ser encontrado.'}, 404
 
 """
 Expressão lambda que verifica se foi passado um valor booleano.
