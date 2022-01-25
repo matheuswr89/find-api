@@ -7,6 +7,75 @@
   <title>Find API</title>
 </head>
 <body>
-  <a href="docs.html">Acessar documentação da API</a>
+  <div id="cabecalho">
+    <div id="navegacao">
+      <a href="docs.html">Acessar documentação da API</a>
+    </div>
+  </div>
+  <div id="apresentacao">
+      <h3>Digite o nome do arquivo ou diretório a ser pesquisado e selecione os filtros de pesquisa</h3>
+      <h4>Dúvidas? Consulte a documentação</h4>
+  </div>
+  <div id="wrapperForm">
+      <div id="divForm">
+          <form id="form">
+              <ul class="wrapper">
+                <li class="form-row">
+                    <label for="inputName">Nome do arquivo ou diretório*</label>
+                    <input type="search" id="inputName" name="name" required/><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputCaseInsensitive">Case Insensitive?</label>
+                    <input type="checkbox" id="inputCaseInsensitive" name="case_insensitive"/><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputExactName">Nome Exato?</label>
+                    <input type="checkbox" id="inputExactName" name="exact_name"><br/>
+                </li>
+                <li class="form-row">
+                    <label for="selectExtensoes">Extensão</label>
+                    <select id="selectExtensoes" name="extensions" multiple><br/>
+                        <option value=".txt">.txt</option>
+                        <option value=".zip">.zip</option>
+                        <option value=".bin">.bin</option>
+                        <option value=".iso">.iso</option>
+                        <option value=".jpg">.jpg</option>
+                        <option value=".pdf">.pdf</option>
+                        <!--Para especificar na caixa de texto abaixo-->
+                        <option value="outro">Outro (Especifique abaixo)</option>
+                    </select><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputOutraExtensao">Outra extensão</label>
+                    <input type="text" id="inputOutraExtensao" name="extensions_other"><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputTodasExtensoes">Todas as extensões</label>
+                    <input type="checkbox" id="inputTodasExtensoes" name="extensions_all"><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputData">Data de Modificação</label>
+                    <input type="date" id="inputData" name="modification_date"><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputTamanho">Tamanho do Arquivo</label>
+                    <input type="number" id="inputTamanho" name="size"><br/>
+                </li>
+                <li class="form-row">
+                    <label for="inputDiretorio">Pesquisar Diretórios?</label>
+                    <input type="checkbox" id="inputDiretorio" name="dir"><br/>
+                </li>
+                <li class="form-row">
+                    <input type="submit" value="Pesquisar" id="btnPesquisar">
+                </li>
+              </ul>
+          </form>
+      </div>
+  </div>
+  <div id="wrapperResposta">
+      <div id="resposta">
+
+      </div>
+  </div>
 </body>
 </html>
