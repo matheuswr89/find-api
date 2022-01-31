@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper_content{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#apresentacao{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+nav{
+    padding-left: 20px;
+}
