@@ -1,102 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="dist/styles.css">
-  <title>Find API</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="dist/styles.css">
+    <title>Find API</title>
 </head>
+
 <body>
-  <div id="cabecalho">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="index.html">Find API</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div id="cabecalho">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">Find API</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-      
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="docs.html">Documentação</a>
-            </li>
-        </div>
-      </nav>
-    <!-- <div id="navegacao">
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="docs.html">Documentação</a>
+                    </li>
+            </div>
+        </nav>
+        <!-- <div id="navegacao">
       <a href="docs.html">Acessar documentação da API</a>
     </div> -->
-  </div>
-  <div id="wrapper_content">
-        <div id="apresentacao">
+    </div>
+    <div id="wrapper_content">
+        <div id="apresentacao" class="my-3">
             <h3>Digite o nome do arquivo ou diretório a ser pesquisado e selecione os filtros de pesquisa</h3>
             <h4>Dúvidas? Consulte a documentação</h4>
         </div>
-        <div id="wrapperForm">
-            <div id="divForm">
-                <form id="form">
-                        <div class="form-group">
-                            <label for="inputName">Nome do arquivo ou diretório*</label>
-                            <input type="search" class="form-control" id="inputName" name="name" required/><br/>
-                        </div>
-                            
-                        <div class="form-check">
-                            <label for="inputCaseInsensitive" class="form-check-label">Case Insensitive?</label>
-                            <input type="checkbox" class="form-check-input" id="inputCaseInsensitive" name="case_insensitive"/><br/>
-                        </div>
-                        <div class="form-check">
-                            <label for="inputExactName" class="form-check-label">Nome Exato?</label>
-                            <input type="checkbox" class="form-check-input" id="inputExactName" name="exact_name"><br/>
-                        </div>
-                        <div class="form-group">
-                            <label for="selectExtensoes">Extensão</label>
-                            <select class="form-control" id="selectExtensoes" name="extensions" multiple><br/>
-                                <option value=".txt">.txt</option>
-                                <option value=".zip">.zip</option>
-                                <option value=".bin">.bin</option>
-                                <option value=".iso">.iso</option>
-                                <option value=".jpg">.jpg</option>
-                                <option value=".pdf">.pdf</option>
-                                <!--Para especificar na caixa de texto abaixo-->
-                                <option value="outro">Outro (Especifique abaixo)</option>
-                            </select><br/>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputOutraExtensao">Outra extensão</label>
-                            <input type="text" class="form-control" id="inputOutraExtensao" name="extensions_other"><br/>
-                        </div>
-                        <div class="form-check">
-                            <label for="inputTodasExtensoes" class="form-check-label">Todas as extensões</label>
-                            <input type="checkbox" class="form-check-input" id="inputTodasExtensoes" name="extensions_all"><br/>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputData">Data de Modificação</label>
-                            <input type="date" class="form-control" id="inputData" name="modification_date"><br/>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputTamanho">Tamanho do Arquivo</label>
-                            <input type="number" class="form-control" id="inputTamanho" name="size" min="1"><br/>
-                        </div>
-                        <div class="form-check">
-                            <label for="inputDiretorio" class="form-check-label">Pesquisar Diretórios?</label>
-                            <input type="checkbox" class="form-check-input" id="inputDiretorio" name="dir"><br/>
-                        </div>
-                        <div>
-                            <input type="submit" class="btn btn-primary" value="Pesquisar" id="btnPesquisar">
-                        </div>
-                </form>
-            </div>
-        </div>
-        <div id="wrapperResposta">
-            <div id="resposta">
+        <ul class="nav nav-tabs mb-3" id="details-tab" role="tablist">
+            <li class="nav-item col-6 d-flex" role="presentation">
+                <button class="nav-link col-12 active" id="pesquisar-tab" data-bs-toggle="tab" data-bs-target="#pesquisar-tab-content" type="button" role="tab" aria-controls="pesquisar-tab-content" aria-selected="true">
+                <i class="bi bi-search me-2"></i>
+                  Pesquisar
+              </button>
+            </li>
+            <li class="nav-item col-6 d-flex" role="presentation">
+                <button class="nav-link col-12 disabled" id="resultado-tab" data-bs-toggle="tab" data-bs-target="#resultado-tab-content" type="button" role="tab" aria-controls="resultado-tab-content" aria-selected="false">
+                  <i class="bi bi-list-ul me-2"></i>
+                  Resultado
+              </button>
+            </li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade show active" id="pesquisar-tab-content" role="tabpanel" aria-labelledby="pesquisar-tab">
+                <div id="wrapperForm">
+                    <div id="divForm">
+                        <form id="form">
+                            <div class="form-group mb-3">
+                                <label for="inputName">Nome do arquivo ou diretório*</label>
+                                <input type="search" class="form-control" id="inputName" name="name" required/>
+                            </div>
+                            <div class="form-check mb-3">
+                                <label for="inputCaseInsensitive" class="form-check-label">Case Insensitive?</label>
+                                <input type="checkbox" class="form-check-input" id="inputCaseInsensitive" name="case_insensitive" />
+                            </div>
+                            <div class="form-check mb-3">
+                                <label for="inputExactName" class="form-check-label">Nome Exato?</label>
+                                <input type="checkbox" class="form-check-input" id="inputExactName" name="exact_name">
+                            </div>
+                            <div class="form-check mb-3">
+                                <label for="inputDiretorio" class="form-check-label">Pesquisar Diretórios?</label>
+                                <input type="checkbox" class="form-check-input" id="inputDiretorio" name="dir">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="selectExtensoes">Extensão</label>
+                                <select class="form-control" id="selectExtensoes" name="extensions" multiple>
+									<option value="bin">.bin</option>	
+                                    <option value="iso">.iso</option>
+                                    <option value="jpg">.jpg</option>
+                                    <option value="pdf">.pdf</option>
+                                    <option value="png">.png</option>
+                                    <option value="txt">.txt</option>
+									<option value="zip">.zip</option>
+									<!--Para especificar na caixa de texto abaixo-->
+									<option value="outras">Outras (Especifique abaixo)</option>
+                                </select>
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="inputOutrasExtensoes">Outras extensões (separe por vírgura)</label>
+                                <input type="text" class="form-control" id="inputOutrasExtensoes" name="extensions_other">
+                            </div>
+                            <div class="form-check mb-3">
+                                <label for="inputTodasExtensoes" class="form-check-label">Todas as extensões</label>
+                                <input type="checkbox" class="form-check-input" id="inputTodasExtensoes" name="extensions_all">
+                            </div>
+                            <div class="form-group mb-3">
+                                <label for="inputData">Data de Modificação</label>
+                                <input type="date" class="form-control" id="inputData" name="modification_date">
+                            </div>
+                            <div class="d-flex flex-column flex-lg-row">
+                                <div class="form-group col-12 col-lg-8 pe-lg-1 mb-3">
+                                    <label for="inputTamanho">Tamanho do Arquivo (bytes)</label>
+                                    <input type="number" class="form-control" id="inputTamanho" name="size" min="0">
+                                </div>
+                                <div class="form-group col-12 col-lg-4 mb-3">
+                                    <label for="selectOpcaoTamanho">Com tamanho</label>
+                                    <select class="form-select" id="selectOpcaoTamanho" name="size_option_select">
+                                        <option value="-">Menor</option>
+                                        <option value="" selected>Igual</option>
+                                        <option value="+">Maior</option>
+                                    </select>
+                                </div>
+                            </div>
 
+                            <div>
+                                <input type="submit" class="btn btn-primary bnt-lg col-12 mb-3" value="Pesquisar" id="btnPesquisar">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="resultado-tab-content" role="tabpanel" aria-labelledby="resultado-tab">
+                <div id="wrapperResultado">
+                    <div class="modal fade" id="informacoesModal" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-lg modal-fullscreen-lg-down modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Informações</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div id="informacoesModalBody" class="modal-body">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="resultado" class="d-flex flex-column flex-lg-row justify-content-between">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="dist/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="dist/script.js"></script>
 </body>
+
 </html>
