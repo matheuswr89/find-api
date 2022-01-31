@@ -56,8 +56,10 @@ paths:
         - in: query
           name: size
           required: false
-          type: integer
-          description: Tamanho do arquivo.
+          type: string
+          description: Tamanho do arquivo. 
+                      Se adicionado o sinal de adição (+) no inicio, irá ser procurado por arquivos com o tamanho maior do que o especificado, o mesmo acontece com o sinal de subtração (-), mas só que ao contrario. 
+                      Exemplo= +1234 ou -1234
         - in: query
           name: dir
           required: false

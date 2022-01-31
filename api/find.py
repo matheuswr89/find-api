@@ -24,7 +24,8 @@ def check_arguments(args):
     if args['size'] != None:
         string += ' -size {0}c'.format(args['size'])
 
-    if args['exact_name'] == False:
+    print(args['exact_name'])
+    if args['exact_name'] == False or args['exact_name'] == None:
         name = '*{0}*'.format(name)
 
     if case_insensitive == True:
