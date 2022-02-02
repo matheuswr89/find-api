@@ -2,7 +2,7 @@ const FIND_API_URL = "http://127.0.0.1:5000/find";
 let passou = 0;
 
 // Verificando se a api está online
-setInterval(async () => {
+setInterval(async() => {
     try {
         let online;
         if (passou == 0)
@@ -41,9 +41,15 @@ function montarRequest() {
         request += "&extensions=" + extensions;
     }
     if (modification_date != "") {
-        let md = modification_date.split("-")
-        let date = new Date(md[0], md[1] - 1, md[2]);
-        request += "&modification_date=" + Date.parse(date).toString().substr(0, 10);
+        if ($("#inputPeriodo").is(":checked")) {
+            request += `&modification_date=${modification_date}, ${ $("#inputDataFim").val() }`;
+        } else {
+            let md = modification_date.split("-")
+            let date = new Date(md[0], md[1] - 1, md[2]);
+            date.setDate(date.getDate() + 1)
+            request += `&modification_date=${modification_date}, ${date.toISOString().split('T')[0]}`;
+        }
+
     }
     if (size != "") {
         request += "&size=" + $("#selectOpcaoTamanho").val() + size;
@@ -55,84 +61,87 @@ function montarRequest() {
 // Realizando a pesquisa na API.
 function find(request) {
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        // Se a requisição estiver completa e o status for 200, então ocorreu tudo certo.
-        if (this.readyState == 4 && this.status == 200) {
-            let response = JSON.parse(this.responseText);
+    xhttp.onreadystatechange = function() {
+        // Verificando se a requisição está completa.
+        if (this.readyState == 4) {
+            // Se a requisição estiver completa e o status for 200, então ocorreu tudo certo.
+            if (this.status == 200) {
+                let response = JSON.parse(this.responseText);
 
-            // Utilizadas para separar os arquivos e diretórios.
-            let arquivos = "";
-            let diretorios = "";
+                // Utilizadas para separar os arquivos e diretórios.
+                let arquivos = "";
+                let diretorios = "";
 
-            let item;
-            let itemHmtl;
-            // Percorrendo os itens recebidos.
-            for (let i = 0; i < response.response.length; i++) {
-                item = response.response[i];
-                itemHmtl = `
-                    <button type="button" onclick="mostrarInfo('${item.path}', '${item.creation_date}', ${item.isFile}, '${item.size}', '${item.count_files}')" class="list-group-item list-group-item-action text-truncate">
-                        ${item.isFile ? '<i class="bi bi-file-earmark me-3"></i>' : '<i class="bi bi-folder me-3"></i>'}
-                        ${item.path.substring(item.path.lastIndexOf("/") + 1)}
-                    </button>
-                `;
+                let item;
+                let itemHmtl;
+                // Percorrendo os itens recebidos.
+                for (let i = 0; i < response.response.length; i++) {
+                    item = response.response[i];
+                    itemHmtl = `
+                            <button type="button" onclick="mostrarInfo('${item.path}', '${item.creation_date}', ${item.isFile}, '${item.size}', '${item.count_files}')" class="list-group-item list-group-item-action text-truncate">
+                                ${item.isFile ? '<i class="bi bi-file-earmark me-3"></i>' : '<i class="bi bi-folder me-3"></i>'}
+                                ${item.path.substring(item.path.lastIndexOf("/") + 1)}
+                            </button>
+                        `;
 
-                // Adicionando o item no html referente ao seu tipo.
-                if (item.isFile) {
-                    arquivos += itemHmtl;
-                } else {
-                    diretorios += itemHmtl;
+                    // Adicionando o item no html referente ao seu tipo.
+                    if (item.isFile) {
+                        arquivos += itemHmtl;
+                    } else {
+                        diretorios += itemHmtl;
+                    }
                 }
-            }
 
-            // Caso tenha pesquisado, ou tenha recebido somente arquivos então os arquivos terão a largura total
-            let col = diretorios == "" ? 12 : 5;
+                // Caso tenha pesquisado, ou tenha recebido somente arquivos então os arquivos terão a largura total
+                let col = diretorios == "" ? 12 : 5;
 
-            // Montando o html com a resposta.
-            let resultado = `
-                <div class="col-12 col-lg-${col}">
-                    <h3>Arquivos</h3>
-                    <div class="list-group fs-4 col-12">
-                        ${arquivos}
-                    </div>
-                </div>
-            `;
-
-            if (diretorios != "") {
-                resultado += `
-                    <div class="col-12 col-lg-${col}">
-                        <h3>Diretórios</h3>
-                        <div class="list-group fs-4 col-12">
-                            ${diretorios}
+                // Montando o html com a resposta.
+                let resultado = `
+                        <div class="col-12 col-lg-${col}">
+                            <h3>Arquivos</h3>
+                            <div class="list-group fs-4 col-12">
+                                ${arquivos}
+                            </div>
                         </div>
+                    `;
+
+                if (diretorios != "") {
+                    resultado += `
+                        <div class="col-12 col-lg-${col}">
+                            <h3>Diretórios</h3>
+                            <div class="list-group fs-4 col-12">
+                                ${diretorios}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                // Adicionando o resultado na página.
+                $("#resultado").html(resultado);
+
+            } else if (this.status == 404) { // Se a requisição estiver completa e o status for 404, então não foi encontrado nenhum arquivo/diretório.
+                let response = JSON.parse(this.responseText);
+                $("#resultado").html(`
+                    <div class="alert alert-danger text-center col-12" role="alert">
+                        ${response.error}
                     </div>
-                `;
+                `);
+            } else { // Se a requisição estiver completa, mas o status não for 200 ou 404, então ocorreu algum erro.
+                let response = JSON.parse(this.responseText);
+                $("#resultado").html(`
+                    <div class="alert alert-danger text-center col-12" role="alert">
+                        Ocorreu um erro ao realizar a pesquisa.
+                    </div>
+                `);
             }
 
-            // Adicionando o resultado na página.
-            $("#resultado").html(resultado);
             // Ativando a aba de resultado.
             $("#resultado-tab").removeClass('disabled');
             // Alternando para a aba com o resultado.
             $("#resultado-tab").tab('show');
 
-        } else if (this.readyState == 4 && this.status == 404) { // Se a requisição estiver completa e o status for 404, então não foi encontrado nenhum arquivo/diretório.
-            let response = JSON.parse(this.responseText);
-            $("#resultado").html(`
-                <div class="alert alert-danger text-center col-12" role="alert">
-                    ${response.error}
-                </div>
-            `);
-            $("#resultado-tab").removeClass('disabled');
-            $("#resultado-tab").tab('show');
-        } else if (this.readyState == 4) { // Se a requisição estiver completa, mas o status não for 200 ou 404, então ocorreu algum erro.
-            let response = JSON.parse(this.responseText);
-            $("#resultado").html(`
-                <div class="alert alert-danger text-center col-12" role="alert">
-                    Ocorreu um erro ao realizar a pesquisa.
-                </div>
-            `);
-            $("#resultado-tab").removeClass('disabled');
-            $("#resultado-tab").tab('show');
+            $("#btnPesquisar").prop("disabled", false);
+            $("#btnPesquisar").html("Pesquisar");
         }
     };
     xhttp.open("GET", request, true);
@@ -177,23 +186,64 @@ function mostrarInfo(path, creation_date, isFile, size, count_files) {
     $("#informacoesModal").modal('show');
 }
 
-$(document).ready(function () {
+$(document).ready(function() {
     // Escondendo o input para extensões informadas pelo usuário.
     $("#inputOutrasExtensoes").closest('div').hide();
+    $("#inputDataFim").closest('div').hide();
 
     // Exibindo o input para extensões informadas pelo usuário caso o usuário selecione para especificar outras extensões.
-    $('#selectExtensoes, #inputTodasExtensoes').change(function () {
+    $('#selectExtensoes, #inputTodasExtensoes').change(function() {
         let extensions = $("#selectExtensoes").val();
         if (extensions.indexOf("outras") > -1 && !$("#inputTodasExtensoes").is(":checked")) {
-            $("#inputOutrasExtensoes").closest('div').show();
+            $("#inputOutrasExtensoes").closest('div').fadeIn();
         } else {
-            $("#inputOutrasExtensoes").closest('div').hide();
+            $("#inputOutrasExtensoes").closest('div').fadeOut();
         }
     });
 
+    // Exibindo o select para as extensões caso o usuaário não queira pesquisar todas.
+    $('#inputTodasExtensoes').change(function() {
+        if ($("#inputTodasExtensoes").is(":checked")) {
+            $("#selectExtensoes").closest('div').fadeOut();
+        } else {
+            $("#selectExtensoes").closest('div').fadeIn();
+        }
+    });
+
+    // Exibindo o input para data final caso o usuário selecione para pesquisar em um período.
+    $("#inputPeriodo").change(function() {
+        if ($("#inputPeriodo").is(":checked")) {
+            $("#inputDataFim").closest('div').fadeIn();
+
+            $("#inputData").closest('div').addClass('col-lg-6 pe-lg-1');
+            $('label[for="inputData"]').text("Data de Modificação (Início do período)");
+
+            $("#inputData").attr("required", true);
+            $("#inputDataFim").attr("required", true);
+        } else {
+            $("#inputDataFim").closest('div').hide();
+
+            $("#inputData").closest('div').removeClass('col-lg-6 pe-lg-1');
+            $('label[for="inputData"]').text("Data de Modificação");
+
+            $("#inputData").attr("required", false);
+            $("#inputDataFim").attr("required", false);
+        }
+    });
+
+    // Alterando o minimo da data final para a data inicial.
+    $("#inputData").change(function() {
+        $("#inputDataFim").attr({ "min": $("#inputData").val() });
+    });
+
     // Interceptando o evento de envio do formulário, fazendo a pesquisa e interrompendo o envio.
-    $("#form").submit(function (event) {
+    $("#form").submit(function(event) {
         event.preventDefault();
+        $("#btnPesquisar").prop("disabled", true);
+        $("#btnPesquisar").html(`
+            <div class="spinner-border spinner-border-sm" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>`);
         pesquisar();
     });
 });
