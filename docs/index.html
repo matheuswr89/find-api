@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="dist/styles.css">
     <title>Find API</title>
@@ -15,9 +16,11 @@
     <div id="cabecalho">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="index.html">Find API</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
@@ -40,30 +43,36 @@
         </div>
         <ul class="nav nav-tabs mb-3" id="details-tab" role="tablist">
             <li class="nav-item col-6 d-flex" role="presentation">
-                <button class="nav-link col-12 active" id="pesquisar-tab" data-bs-toggle="tab" data-bs-target="#pesquisar-tab-content" type="button" role="tab" aria-controls="pesquisar-tab-content" aria-selected="true">
-                <i class="bi bi-search me-2"></i>
-                  Pesquisar
-              </button>
+                <button class="nav-link col-12 active" id="pesquisar-tab" data-bs-toggle="tab"
+                    data-bs-target="#pesquisar-tab-content" type="button" role="tab"
+                    aria-controls="pesquisar-tab-content" aria-selected="true">
+                    <i class="bi bi-search me-2"></i>
+                    Pesquisar
+                </button>
             </li>
             <li class="nav-item col-6 d-flex" role="presentation">
-                <button class="nav-link col-12 disabled" id="resultado-tab" data-bs-toggle="tab" data-bs-target="#resultado-tab-content" type="button" role="tab" aria-controls="resultado-tab-content" aria-selected="false">
-                  <i class="bi bi-list-ul me-2"></i>
-                  Resultado
-              </button>
+                <button class="nav-link col-12 disabled" id="resultado-tab" data-bs-toggle="tab"
+                    data-bs-target="#resultado-tab-content" type="button" role="tab"
+                    aria-controls="resultado-tab-content" aria-selected="false">
+                    <i class="bi bi-list-ul me-2"></i>
+                    Resultado
+                </button>
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade show active" id="pesquisar-tab-content" role="tabpanel" aria-labelledby="pesquisar-tab">
+            <div class="tab-pane fade show active" id="pesquisar-tab-content" role="tabpanel"
+                aria-labelledby="pesquisar-tab">
                 <div id="wrapperForm">
                     <div id="divForm">
                         <form id="form">
                             <div class="form-group mb-3">
                                 <label for="inputName">Nome do arquivo ou diretório*</label>
-                                <input type="search" class="form-control" id="inputName" name="name" required/>
+                                <input type="search" class="form-control" id="inputName" name="name" required />
                             </div>
                             <div class="form-check mb-3">
                                 <label for="inputCaseInsensitive" class="form-check-label">Case Insensitive?</label>
-                                <input type="checkbox" class="form-check-input" id="inputCaseInsensitive" name="case_insensitive" />
+                                <input type="checkbox" class="form-check-input" id="inputCaseInsensitive"
+                                    name="case_insensitive" />
                             </div>
                             <div class="form-check mb-3">
                                 <label for="inputExactName" class="form-check-label">Nome Exato?</label>
@@ -76,24 +85,26 @@
                             <div class="form-group mb-3">
                                 <label for="selectExtensoes">Extensão</label>
                                 <select class="form-control" id="selectExtensoes" name="extensions" multiple>
-									<option value="bin">.bin</option>	
+                                    <option value="bin">.bin</option>
                                     <option value="iso">.iso</option>
                                     <option value="jpg">.jpg</option>
                                     <option value="pdf">.pdf</option>
                                     <option value="png">.png</option>
                                     <option value="txt">.txt</option>
-									<option value="zip">.zip</option>
-									<!--Para especificar na caixa de texto abaixo-->
-									<option value="outras">Outras (Especifique abaixo)</option>
+                                    <option value="zip">.zip</option>
+                                    <!--Para especificar na caixa de texto abaixo-->
+                                    <option value="outras">Outras (Especifique abaixo)</option>
                                 </select>
                             </div>
                             <div class="form-group mb-3">
                                 <label for="inputOutrasExtensoes">Outras extensões (separe por vírgura)</label>
-                                <input type="text" class="form-control" id="inputOutrasExtensoes" name="extensions_other">
+                                <input type="text" class="form-control" id="inputOutrasExtensoes"
+                                    name="extensions_other">
                             </div>
                             <div class="form-check mb-3">
                                 <label for="inputTodasExtensoes" class="form-check-label">Todas as extensões</label>
-                                <input type="checkbox" class="form-check-input" id="inputTodasExtensoes" name="extensions_all">
+                                <input type="checkbox" class="form-check-input" id="inputTodasExtensoes"
+                                    name="extensions_all">
                             </div>
                             <div class="form-group mb-3">
                                 <label for="inputData">Data de Modificação</label>
@@ -115,7 +126,8 @@
                             </div>
 
                             <div>
-                                <input type="submit" class="btn btn-primary bnt-lg col-12 mb-3" value="Pesquisar" id="btnPesquisar">
+                                <input type="submit" class="btn btn-primary bnt-lg col-12 mb-3" value="Pesquisar"
+                                    id="btnPesquisar">
                             </div>
                         </form>
                     </div>
@@ -128,12 +140,14 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title">Informações</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div id="informacoesModalBody" class="modal-body">
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Fechar</button>
                                 </div>
                             </div>
                         </div>
@@ -145,7 +159,9 @@
         </div>
     </div>
     <script src="dist/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
     <script src="dist/script.js"></script>
 </body>
 

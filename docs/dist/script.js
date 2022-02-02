@@ -9,10 +9,10 @@ setInterval(async () => {
             online = await fetch("http://127.0.0.1:5000/inicio");
         if (online.status == 200) passou++;
     } catch (err) {
-        if (passou == 0)
-            alert("API offline.");
+        if (passou == 0) alert("API offline.");
+        else passou = 0;
     }
-}, 1000);
+}, 2000);
 
 // Montando a request com os campos informados no formulário.
 function montarRequest() {
