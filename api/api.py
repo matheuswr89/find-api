@@ -8,7 +8,7 @@ CORS(app)
 api = Api(app)
 
 
-@app.route('/')
+@app.route('/inicio')
 def init():
     return {'response': 'Vá até /find?name=[insira um nome]'}
 

@@ -6,8 +6,8 @@ setInterval(async () => {
     try {
         let online;
         if (passou == 0)
-            online = await fetch(FIND_API_URL);
-        if (online.status >= 200 && online.status < 300) passou++;
+            online = await fetch("http://127.0.0.1:5000/inicio");
+        if (online.status == 200) passou++;
     } catch (err) {
         if (passou == 0)
             alert("API offline.");
