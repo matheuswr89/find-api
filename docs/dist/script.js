@@ -6,7 +6,7 @@ setInterval(async () => {
     try {
         let online;
         if (passou == 0)
-            online = await fetch(FIND_API_URL.replace('/find', ''));
+            online = await fetch(FIND_API_URL);
         if (online.status >= 200 && online.status < 300) passou++;
     } catch (err) {
         if (passou == 0)
