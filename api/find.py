@@ -54,8 +54,12 @@ def check_arguments(args):
             string += ' "{0}.{1}"'.format(name, extensions)
 
     if args['modification_date'] != None:
-        string += ' -mtime {0}'.format(
-            calculate_date(args['modification_date']))
+        if ',' not in args['modification_date']:
+            string += ' -newermt {0}'.format(args['modification_date'])
+        else:
+            split_date = args['modification_date'].split(',')
+            string += ' -newermt {0} ! -newermt {1}'.format(
+                split_date[0], split_date[1])
 
     return command_line(string.replace('\n', ''))
 
@@ -127,18 +131,6 @@ path -> caminho absoluto do diretório
 def get_total_files(path):
     list = os.listdir(path)
     return len(list)
-
-
-"""
-Calcula a diferença de datas entre a hora atual do PC e a fornecida pelo usuário.
-data -> data fornecida pelo usuario no formato 2020-03-31
-"""
-
-
-def calculate_date(data):
-    d2 = datetime.now()
-    d1 = datetime.fromtimestamp(int(data))
-    return abs((d2 - d1).days)
 
 
 """

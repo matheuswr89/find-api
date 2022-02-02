@@ -1,4 +1,18 @@
 const FIND_API_URL = "http://127.0.0.1:5000/find";
+let passou = 0;
+
+// Verificando se a api está online
+setInterval(async () => {
+    try {
+        let online;
+        if (passou == 0)
+            online = await fetch(FIND_API_URL.replace('/find', ''));
+        if (online.status >= 200 && online.status < 300) passou++;
+    } catch (err) {
+        if (passou == 0)
+            alert("API offline.");
+    }
+}, 1000);
 
 // Montando a request com os campos informados no formulário.
 function montarRequest() {
@@ -41,7 +55,7 @@ function montarRequest() {
 // Realizando a pesquisa na API.
 function find(request) {
     let xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
+    xhttp.onreadystatechange = function () {
         // Se a requisição estiver completa e o status for 200, então ocorreu tudo certo.
         if (this.readyState == 4 && this.status == 200) {
             let response = JSON.parse(this.responseText);
@@ -163,12 +177,12 @@ function mostrarInfo(path, creation_date, isFile, size, count_files) {
     $("#informacoesModal").modal('show');
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     // Escondendo o input para extensões informadas pelo usuário.
     $("#inputOutrasExtensoes").closest('div').hide();
 
     // Exibindo o input para extensões informadas pelo usuário caso o usuário selecione para especificar outras extensões.
-    $('#selectExtensoes, #inputTodasExtensoes').change(function() {
+    $('#selectExtensoes, #inputTodasExtensoes').change(function () {
         let extensions = $("#selectExtensoes").val();
         if (extensions.indexOf("outras") > -1 && !$("#inputTodasExtensoes").is(":checked")) {
             $("#inputOutrasExtensoes").closest('div').show();
@@ -178,7 +192,7 @@ $(document).ready(function() {
     });
 
     // Interceptando o evento de envio do formulário, fazendo a pesquisa e interrompendo o envio.
-    $("#form").submit(function(event) {
+    $("#form").submit(function (event) {
         event.preventDefault();
         pesquisar();
     });
