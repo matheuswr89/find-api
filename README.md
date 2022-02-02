@@ -1,7 +1,7 @@
 # Find API
 API RESTful JSON para capturar e retornar a saída do comando Linux find . O programa find possibilita realizar 1 buscas por arquivos e diretórios por meio de diversos filtros, como nome, extensão, tipo e tamanho.
 
-WEB-APP url: <a target="__blank">https://matheuswr89.github.io/find-api/index.html</a> (em desenvolvimento)
+WEB-APP url: <a href="https://matheuswr89.github.io/find-api/index.html" target="_blank">https://matheuswr89.github.io/find-api/index.html</a> (em desenvolvimento)
 # Como usar
 1. Baixe o repositório.
 
