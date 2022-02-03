@@ -94,14 +94,11 @@ path -> caminho absoluto do arquivo ou diretório
 
 
 def get_creation_date(path):
-    if platform.system() == 'Windows':
-        return os.path.getctime(path)
-    else:
-        creation = os.stat(path)
-        try:
-            return creation.st_birthtime
-        except AttributeError:
-            return creation.st_mtime
+    creation = os.stat(path)
+    try:
+        return creation.st_birthtime
+    except AttributeError:
+        return creation.st_mtime
 
 
 """

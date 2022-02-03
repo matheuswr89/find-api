@@ -10,3 +10,10 @@ WEB-APP url: <a href="https://matheuswr89.github.io/find-api/index.html" target=
 3. Ainda na pasta ```api``` execute o comando para iniciar a api: ```python3 api/api.py```
 
 4. Vá até ```http://127.0.0.1:5000/find?name=``` e teste.
+
+
+# Video Giovanne
+[![IMAGE ALT TEXT HERE](/docs/dist/giovanne.png)](https://www.youtube.com/watch?v=DNNQv9u-lh4)
+
+# Video Matheus William
+[![IMAGE ALT TEXT HERE](/docs/dist/matheus.png)](https://drive.google.com/file/d/10JEw_1De8tBFpoxIvCwX1bficEukBChj/view?usp=sharing)
