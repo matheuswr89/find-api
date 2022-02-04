@@ -1,30 +1,116 @@
-### Find API
-API RESTful JSON para capturar e retornar a saída do comando Linux find . O programa find possibilita realizar 1 buscas por arquivos e diretórios por meio de diversos filtros, como nome, extensão, tipo e tamanho.
+<!DOCTYPE html>
+<html lang="en">
 
-### Modo de uso
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="dist/styles.css">
+  <title>Apresentação</title>
+</head>
 
-1. Baixe o repositório.
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Find API</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-2. Descompacte o arquivo e vá na pasta ```api``` e execute o comando para instalar as dependências: ```pip3 install -r requeriments.txt```
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="docs.html">Documentação</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="apresentacao.html">Apresentação</a>
+        </li>
+    </div>
+  </nav>
+  <div id="wrapper_content">
+    <h1>Find API</h1>
+    <p>
+      API RESTful JSON para capturar e retornar a saída do comando Linux find .
+      O programa find possibilita realizar 1 buscas por arquivos e diretórios
+      por meio de diversos filtros, como nome, extensão, tipo e tamanho.
+    </p>
+    <p>A api tem os seguintes recursos:</p>
+    <ul>
+      <li>Buscar arquivos por nome:
+        <ul>
+          <li>Case sensitive</li>
+          <li>Case insensitive</li>
+          <li>Nome exato</li>
+          <li>Parte do nome</li>
+        </ul>
+      </li>
+      <li>Buscar arquivos por extensão:
+        <ul>
+          <li>Lista de principais extensões para o usuário selecionar</li>
+          <li>Possibilidade do usuário informar uma extensão que não faz parte da lista</li>
+        </ul>
+      </li>
+      <li>Buscar arquivos por data de modificação</li>
+      <li>Buscar arquivos por tamanho</li>
+      <li>Buscar diretório</li>
+      <li>Em relação à listagem dos resultados encontrados pela busca, quando o usuário clicar
+        em um arquivo ou diretório, é ser exibido:
+        <ul>
+          <li>Nome, caminho absoluto, tamanho e data de criação do arquivo</li>
+          <li>Nome, caminho absoluto, quantidade de arquivos e data de criação do diretório</li>
+        </ul>
+      </li>
+    </ul>
+    <h1>Modo de uso</h1>
+    <ol>
+      <li>Baixe o repositório.</li>
+      <li>
+        Descompacte o arquivo e vá na pasta <b>api</b> e execute o comando para
+        instalar as dependências: <b>pip3 install -r requeriments.txt</b>.
+      </li>
+      <li>
+        Ainda na pasta <b></b>api</b> execute o comando para iniciar a api:
+        <b>python3 api.py</b>
+      </li>
+      <li>Vá até <b>http://127.0.0.1:5000/find?name=</b> e teste a API.</li>
+      <li>Entre na
+        pasta <b>docs</b> e abra o arquivo <b>index.html</b> no navegador ou acesse a
+        <a href="https://matheuswr89.github.io/find-api/index.html">url</a> para ver o frontend online.
+      </li>
+    </ol>
 
-3. Ainda na pasta ```api``` execute o comando para iniciar a api: ```python3 api.py```
+    <h1>Video de apresentação</h1>
+    <iframe class="responsive-iframe"
+      src="https://drive.google.com/file/d/11HuDbc-o6bzyJk3XQ5lNteiP6AzFsPgV/preview"></iframe>
 
-4. Vá até ```http://127.0.0.1:5000/find?name=``` e teste a API.
+    <h1>Video dos alunos</h1>
+    <ul>
+      <li>Ailton
+        <br />
+        <iframe class="responsive-iframe"
+          src="https://drive.google.com/file/d/1FIhcUWdCSQlAhMVj3WW_LhCaEXbewdkQ/preview"></iframe>
+      </li>
+      <li>Giovanne
+        <br />
+        <iframe class="responsive-iframe" src="https://www.youtube.com/embed/DNNQv9u-lh4"></iframe>
+      </li>
+      <li>Matheus
+        <br />
+        <iframe class="responsive-iframe"
+          src="https://drive.google.com/file/d/10JEw_1De8tBFpoxIvCwX1bficEukBChj/preview"></iframe>
+      </li>
+    </ul>
+  </div>
+  <script src="dist/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+</body>
 
-5. Entre na pasta ```docs``` e abra o arquivo ```index.html``` no navegador ou acesse a url https://matheuswr89.github.io/find-api/index.html para ver o frontend online. 
-
-### Video de apresentação
-
-<iframe src="https://drive.google.com/file/d/11HuDbc-o6bzyJk3XQ5lNteiP6AzFsPgV/preview" width="640" height="480" allow="autoplay"></iframe>
-
-### Video dos alunos participantes
-
-- Ailton
-<iframe src="https://drive.google.com/file/d/1FIhcUWdCSQlAhMVj3WW_LhCaEXbewdkQ/preview" width="640" height="480" allow="autoplay"></iframe>
-
--Giovanne
-<iframe width="640" height="480" src="https://www.youtube.com/embed/DNNQv9u-lh4">
-</iframe>
-
-- Matheus
-<iframe src="https://drive.google.com/file/d/10JEw_1De8tBFpoxIvCwX1bficEukBChj/preview" width="640" height="480" allow="autoplay"></iframe>
+</html>
